@@ -6,7 +6,7 @@
  */ 
 
 #include "config.h"
-#include "ledstrip.h"
+#include "ws2812.h"
 #include <avr/interrupt.h>
 #include <avr/io.h>
 #include <avr/pgmspace.h>

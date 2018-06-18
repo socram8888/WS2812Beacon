@@ -1,5 +1,5 @@
 /*
- * ledstrip.h
+ * ws2812.h
  *
  * Created: 15/06/2018 22:10:03
  *  Author: Marcos
