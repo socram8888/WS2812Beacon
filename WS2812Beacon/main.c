@@ -60,21 +60,39 @@ ISR(TIMER1_COMPA_vect) {
 
 	switch (hueSector) {
 		case 0:
-		r = pgm_read_byte_near(&SIN_TBL[SIN_STEPS - hue - 1]);
-		g = pgm_read_byte_near(&SIN_TBL[hue]);
-		b = 0;
-		break;
+			r = 255;
+			g = pgm_read_byte_near(&SIN_TBL[hue]);
+			b = 0;
+			break;
 
 		case 1:
-		r = 0;
-		g = pgm_read_byte_near(&SIN_TBL[SIN_STEPS - hue - 1]);
-		b = pgm_read_byte_near(&SIN_TBL[hue]);
-		break;
+			r = pgm_read_byte_near(&SIN_TBL[SIN_STEPS - hue - 1]);
+			g = 255;
+			b = 0;
+			break;
+
+		case 2:
+			r = 0;
+			g = 255;
+			b = pgm_read_byte_near(&SIN_TBL[hue]);
+			break;
+
+		case 3:
+			r = 0;
+			g = pgm_read_byte_near(&SIN_TBL[SIN_STEPS - hue - 1]);
+			b = 255;
+			break;
+
+		case 4:
+			r = pgm_read_byte_near(&SIN_TBL[hue]);
+			g = 0;
+			b = 255;
+			break;
 
 		default:
-		r = pgm_read_byte_near(&SIN_TBL[hue]);
-		g = 0;
-		b = pgm_read_byte_near(&SIN_TBL[SIN_STEPS - hue - 1]);
+			r = 255;
+			g = 0;
+			b = pgm_read_byte_near(&SIN_TBL[SIN_STEPS - hue - 1]);
 	}
 
 
@@ -89,10 +107,8 @@ ISR(TIMER1_COMPA_vect) {
 	if (hue == SIN_STEPS) {
 		hue = 0;
 		hueSector++;
-		if (hueSector == 3) {
+		if (hueSector == 6) {
 			hueSector = 0;
 		}
 	}
-
-	PORTB ^= 0x01;
 }

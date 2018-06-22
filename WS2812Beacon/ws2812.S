@@ -88,13 +88,6 @@ ws2812_send_next:
 
 ws2812_send_exit:
 
-	// Set it high again
-	cli
-	ld r20, X
-	or r20, r18
-	st X, r20
-	sei
-
 	ret
 
 ws2812_send_byte:
